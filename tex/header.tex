@@ -29,6 +29,8 @@
    \setmainfont{TeX Gyre Termes}
 \else
    \usepackage{newtxtext,newtxmath} % https://ctan.org/pkg/newtx (2017, no font errors)
+   \usepackage{xmpincl} % incompatible with LuaTeX; see hyperxmp documentation
+   \includexmp{CC_BY-SA_4.0}
 \fi
 
 \usepackage[norefs,ignoreunlbld]{refcheck} % refs part doesn't work with biblatex
