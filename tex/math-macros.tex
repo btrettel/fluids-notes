@@ -1,0 +1,217 @@
+% for ensemble averages
+% TODO: Convert to \DeclarePairedDelimiter?
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\savg}[1]{\langle #1 \rangle}
+% https://tex.stackexchange.com/q/448/9945
+\newcommand{\cavg}[2]{\left\langle #1 \ \middle|\ #2 \right\rangle}
+% https://tex.stackexchange.com/q/187162/9945
+\newcommand{\scavg}[2]{\langle #1 \mid #2 \rangle}
+
+% for thermodynamic partial derivatives
+\newcommand{\dpdc}[3]{\left(\dpd{#1}{#2}\right)_{#3}}
+
+% for material derivatives
+\newcommand{\D}[2]{\frac{\Dif\kern1pt#1}{\Dif\kern1pt#2}}
+
+% inline derivatives
+\newcommand{\ipd}[2]{\partial\kern1pt#1 / \partial\kern1pt#2}
+\newcommand{\iod}[2]{\dif\kern1pt#1 / \dif\kern1pt#2}
+\newcommand{\iosecd}[2]{\dif^{\kern2pt 2}\kern-2pt#1 / \dif\kern1pt#2^2}
+
+% make \e be the same as \cdot 10^
+\providecommand{\e}[1]{\ensuremath{\cdot 10^{#1}}}
+
+% new math operators
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\vectornorm}[1]{\left|\left|\mathrmbf{#1}\right|\right|}
+\DeclareMathOperator{\atan}{atan}
+\DeclareMathOperator{\erf}{erf}
+\DeclareMathOperator{\erfinv}{erfinv}
+\DeclareMathOperator{\LambertW}{W}
+\newcommand{\mytilde}{~\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}~}
+\newcommand{\Order}[1]{\ensuremath{\mathcal{O}\left(#1\right)}}
+\newcommand{\Ordersb}[1]{\ensuremath{\mathcal{O}\left[#1\right]}}
+\newcommand{\sOrder}[1]{\ensuremath{\mathcal{O}(#1)}}
+%\DeclarePairedDelimiter\abs{\lvert}{\rvert}% https://tex.stackexchange.com/a/43009/9945
+%\newcommand{\abs}[1]{\lvert#1\rvert}
+
+\newcommand{\Bo}{\mathrm{Bo}}
+\newcommand{\Ec}{\mathrm{Ec}}
+\newcommand{\Fr}{\mathrm{Fr}}
+\newcommand{\Oh}{\mathrm{Oh}}
+\newcommand{\Pe}{\mathrm{Pe}}
+\renewcommand{\Pr}{\mathrm{Pr}}
+\newcommand{\Real}{\Re~}
+\renewcommand{\Re}{\mathrm{Re}}
+\newcommand{\Tu}{\mathrm{Tu}}
+\newcommand{\We}{\mathrm{We}}
+\newcommand{\Ma}{\mathrm{Ma}}
+
+\newcommand{\Tubar}{\overline{\Tu}}
+\newcommand{\Lambdabar}{\overline{\Lambda}}
+\newcommand{\Ubar}{\overline{U}}
+\newcommand{\kbar}{\overline{k}}
+\newcommand{\epsbar}{\overline{\varepsilon}}
+\newcommand{\ebar}{\overline{e}} % used for turbulent initial disturbance level theory in CDRSV review section
+
+%\newcommand{\Unet}{\mathcal{U}}
+\newcommand{\Unet}{U_\text{net}}
+
+\newcommand{\Relo}{\Re_{\ell0}}
+\newcommand{\Welo}{\We_{\ell0}}
+\newcommand{\Wego}{\We_{\text{g}0}}
+\newcommand{\Ohlo}{\Oh_{\ell0}}
+\newcommand{\Welocrit}{\We_{\ell0,\text{crit}}}
+\newcommand{\Wegocrit}{\We_{\text{g}0,\text{crit}}}
+\newcommand{\Relocrit}{\Re_{\ell0,\text{crit}}}
+\newcommand{\Relotrans}{\Re_{\ell0,\text{trans}}}
+\newcommand{\Reloturb}{\Re_{\ell0,\text{turb}}}
+\newcommand{\rhol}{\rho_{\ell}}
+\newcommand{\rhog}{\rho_\text{g}}
+\newcommand{\nul}{\nu_{\ell}}
+\newcommand{\nug}{\nu_\text{g}}
+\newcommand{\mul}{\mu_{\ell}}
+\newcommand{\mug}{\mu_\text{g}}
+\newcommand{\Prl}{\Pr_\ell}
+% also need to change trajectory and jet breakup scripts when changing these
+% 2018-11-30: search for _\text{l
+
+\newcommand{\xbavg}{\savg{x_\text{b}}}
+\newcommand{\tbavg}{\savg{t_\text{b}}}
+\newcommand{\sigmaxb}{\sigma_{x_\text{b}}}
+\newcommand{\xiavg}{\savg{x_\text{i}}}
+\newcommand{\thetai}{{\theta_\text{i}}}
+\newcommand{\udavg}{\savg{u_\text{d}}}
+\newcommand{\vdavg}{\savg{v_\text{d}}}
+\newcommand{\Dmax}{D_\text{max}}
+\newcommand{\Frh}{\Fr_{h_0}}
+\newcommand{\Xb}{X_\text{b}}
+\newcommand{\Yb}{Y_\text{b}}
+\newcommand{\Ub}{U_\text{b}}
+\newcommand{\Ubvec}{\vec{U}_\text{b}}
+\newcommand{\Vb}{V_\text{b}}
+\newcommand{\Ud}{U_\text{d}}
+\newcommand{\Udvec}{\vec{U}_\text{d}}
+\newcommand{\Vd}{V_\text{d}}
+\newcommand{\Xd}{X_\text{d}}
+\newcommand{\Xdvec}{\vec{X}_\text{d}}
+\newcommand{\Yd}{Y_\text{d}}
+\newcommand{\Ugvec}{\vec{U}_\text{g}}
+\newcommand{\Vg}{V_\text{g}}
+\newcommand{\Uj}{U_\text{j}}
+\newcommand{\Vj}{V_\text{j}}
+\newcommand{\Xj}{X_\text{j}}
+\newcommand{\Yj}{Y_\text{j}}
+\newcommand{\Ad}{A_\text{d}}
+\newcommand{\mdrop}{m_\text{d}}
+\newcommand{\Cd}{C_\text{d}}
+\newcommand{\taumax}{\tau_\text{max}}
+\newcommand{\Relxtrans}{\Re_{\ell{}x,\text{trans}}}
+\newcommand{\xtrans}{x_\text{trans}}
+\newcommand{\Frr}{\Fr_\text{r}}
+\newcommand{\dr}{d_\text{r}}
+\newcommand{\utau}{u_\tau}
+\newcommand{\utauo}{u_{\tau,0}}
+% TODO: tan theta_i/2
+% TODO: x_\text{b}
+% TODO: x_\text{i}
+% TODO: \overline{\varepsilon}
+
+\newcommand{\Range}{R}
+\newcommand{\height}{h}
+\newcommand{\etaR}{\eta_R}
+\newcommand{\etah}{\eta_h}
+\newcommand{\Rs}{R^*}
+\newcommand{\hs}{h^*}
+
+\newcommand{\CLR}{C_\text{LR}}
+\newcommand{\CTR}{C_\text{TR}}
+
+\newcommand{\uprime}{{u^\prime}}
+\newcommand{\vprime}{{v^\prime}}
+\newcommand{\wprime}{{w^\prime}}
+\newcommand{\uprimesub}[1]{u^\prime_{#1}}
+\newcommand{\vprimesub}[1]{v^\prime_{#1}}
+\newcommand{\uprimebar}[1]{\overline{\uprimesub{#1}}}
+\newcommand{\uprimebarno}[1]{\overline{\uprime}}
+\newcommand{\vprimebar}[1]{\overline{\vprimesub{#1}}}
+\newcommand{\vprimebarno}{\overline{\vprime}}
+\newcommand{\Tuexp}[1]{\Tu_0^{#1}}
+\newcommand{\Tubarexp}[1]{\Tubar_0^{\kern1.0pt #1}}
+\newcommand{\mdotp}{\dot{m}^{\prime}}
+\newcommand{\mdotpp}{\dot{m}^{\prime\prime}}
+\newcommand{\avgmdotpp}{\savg{\mdotpp}}
+
+% https://tex.stackexchange.com/a/69017
+\makeatletter
+\DeclareRobustCommand{\Vol}{\text{\volumedash}V}
+\newcommand{\volumedash}{%
+  \makebox[0pt][l]{%
+    \ooalign{\hfil\hphantom{$\m@th V$}\hfil\cr\kern0.08em--\hfil\cr}%
+  }%
+}
+\makeatother
+%\newcommand{\Vol}{\rotatebox[origin=c]{180}{\ensuremath{A}}}
+\newcommand{\Volsub}{\Vol}
+\newcommand{\Volsubsub}{\Vol}
+
+% very large manually set bracket size
+% https://tex.stackexchange.com/a/6796
+\makeatletter
+\newcommand{\vast}{\bBigg@{3}}
+\newcommand{\Vast}{\bBigg@{4}}
+\makeatother
+
+% stacked text for underbraces
+\newcommand{\ubtext}[2]{\stackrel{\text{\scriptsize#1}}{\text{\scriptsize#2}}}
+
+% approximately proportional to symbol
+% from https://tex.stackexchange.com/questions/33538/how-to-get-an-approximately-proportional-to-symbol
+\newcommand{\appropto}{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+
+\newcommand*{\cancelzero}[1]{\cancelto{\scriptstyle 0}{#1}}
+
+%% closed square, cube, etc., roots
+%% https://tex.stackexchange.com/questions/29834/closed-square-root-symbo
+%\let\oldsqrt\sqrt
+%% it defines the new \sqrt in terms of the old one
+%\def\sqrt{\mathpalette\DHLhksqrt}
+%\def\DHLhksqrt#1#2{%
+%\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+%\advance\dimen0-0.2\ht0
+%\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+%{\box0\lower0.4pt\box2}}
+
+% These are environments for equation, equation*, align, and align* that have not yet been checked by DOUBTS. These will return a warning unless changed to their corresponding real environment.
+\newenvironment{uncheckedequation}
+{\begin{equation}}
+{\end{equation}\PackageWarning{DOUBTS}{Check with DOUBTS.}}
+
+\newenvironment{uncheckedequation*}
+{\begin{equation*}}
+{\end{equation}\PackageWarning{DOUBTS}{Check with DOUBTS.}}
+
+\newenvironment{uncheckedalign}
+{\begin{align}}
+{\end{align}\PackageWarning{DOUBTS}{Check with DOUBTS.}}
+
+\newenvironment{uncheckedalign*}
+{\begin{align*}}
+{\end{align*}\PackageWarning{DOUBTS}{Check with DOUBTS.}}
+
+\newcommand*{\tripleprime}{\prime\prime\prime}
+
+% https://tex.stackexchange.com/a/97246/9945
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 

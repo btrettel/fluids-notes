@@ -1,0 +1,97 @@
+\usepackage{amsbsy} % Adds \boldsymbol to make Greek letters bold in math mode
+\usepackage{mathtools} % Improvements to amsmath, which it also loads.
+\usepackage{amssymb}
+\usepackage[affil-it]{authblk}
+\usepackage[backref=true,natbib=true,style=alphabetic,backend=biber,giveninits=true,maxcitenames=3,maxbibnames=99]{biblatex}
+\usepackage{cancel}
+\usepackage{caption} % https://tex.stackexchange.com/a/17726/9945
+\usepackage{color}
+\usepackage{commath} % https://nickhigham.wordpress.com/2016/01/28/typesetting-mathematics-according-to-the-iso-standard/#comment-3038
+\usepackage[inline,shortlabels]{enumitem} % https://tex.stackexchange.com/a/173851/9945
+%\usepackage{fixltx2e} % not needed in TeX Live 2015 and later.
+% https://tex.stackexchange.com/a/413046
+\ifluatex 
+   \typeout{LuaTeX detected}
+   \usepackage{fontspec}
+\else
+   \typeout{pdfTeX detected}
+   \usepackage[utf8]{inputenc}
+   \usepackage[T1]{fontenc}
+\fi
+\usepackage[paperwidth=5.5in,paperheight=8.5in,margin=0.5in]{geometry}
+\usepackage{graphicx}
+\usepackage{isomath} % https://tex.stackexchange.com/a/19276/9945
+
+% URW Nimbus Roman
+% http://www.tug.dk/FontCatalogue/newtx/
+\ifluatex
+   \usepackage{newtxmath}
+   \setmainfont{TeX Gyre Termes}
+\else
+   \usepackage{newtxtext,newtxmath} % https://ctan.org/pkg/newtx (2017, no font errors)
+\fi
+
+\usepackage[norefs,ignoreunlbld]{refcheck} % refs part doesn't work with biblatex
+% must be loaded after ams packages and hyperref
+% TODO: Fix this so that it works with your reference shortcuts. https://tex.stackexchange.com/questions/87610/making-refcheck-work-with-cleveref
+\usepackage{setspace} % needs to be loaded before hyperref
+\usepackage{siunitx}
+\DeclareSIUnit[number-unit-product = ]\percent{\char`\%} % remove space before percentage sign
+\usepackage{xpatch}
+
+% load microtype
+% needs to load after fonts
+% https://tex.stackexchange.com/a/586
+\usepackage{microtype}
+
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\pgfplotsset{compat=1.16} % https://tex.stackexchange.com/a/81912
+\usetikzlibrary{arrows}
+
+\usepackage{hyperref}
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks  = false,
+  urlcolor    = black,
+  pdfauthor   = {\name},
+  pdfkeywords = {\keywords},
+  pdftitle    = {\doctitle},
+  pdfsubject  = {},
+  pdfpagemode = UseNone
+}
+
+% https://www.semipol.de/2018/06/12/latex-best-practices.html#hyperlinks-to-floats-and-not-their-captions
+\usepackage{hypcap} % load after hyperref
+
+\input{macros.tex}
+
+% make description environment not use bold letters
+% http://www.latex-community.org/forum/viewtopic.php?f=44&t=4204
+\renewcommand*\descriptionlabel[1]{\hspace\labelsep\normalfont #1}
+
+% Remove "In:" from the bibliography
+% https://tex.stackexchange.com/a/10686
+\renewbibmacro{in:}{}
+
+% Change issue number to be in parentheses
+% https://tex.stackexchange.com/a/97729
+\xpatchbibmacro{volume+number+eid}{%
+  \setunit*{\adddot}%
+}{%
+}{}{}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+
+% Put URLs and DOIs in same font as remainder of text
+% https://tex.stackexchange.com/q/151110
+%\urlstyle{same}
+\DeclareFieldFormat{url}{URL: \url{#1}}
+\DeclareFieldFormat{doi}{\DOI{#1}}
+
+% Change ISSN from small caps and add WorldCat link
+%\DeclareFieldFormat{issn}{ISSN: \href{http://www.worldcat.org/issn/#1}{#1}}
+%\DeclareFieldFormat{issn}{ISSN: \href{http://www.worldcat.org/search?q=n2\%3A#1}{#1}}
+\DeclareFieldFormat{issn}{\ISSN{#1}}
+\DeclareFieldFormat{isbn}{ISBN: \href{https://www.worldcat.org/search?q=isbn\%3A#1}{#1}}
+
+% Change the URL style to be Roman.
+\urlstyle{rm}

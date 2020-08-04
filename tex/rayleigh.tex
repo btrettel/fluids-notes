@@ -1,0 +1,208 @@
+\chapter{Laminar and turbulent Rayleigh regime}
+
+%\begin{abstract}
+%The breakup length and droplet size in the Rayleigh regime are derived theoretically for inviscid flows using temporal theory, including many details missing from most derivations. The derivations roughly follow \citet[\S123]{levich_physicochemical_1962}, but are simplified by focusing solely on the potential flow case.
+%%Keywords: \keywords
+%\end{abstract}
+
+\section{Governing equations and linearization}
+
+Consider a cylindrical ``jet'' infinite in the $x$ direction, with initial radius $r_0$. The jet is axisymmetric --- there is no angular dependency or angular velocity. The ``jet'' does not convect, and instead evolves in time; this is called ``temporal stability theory''. Small perturbations of the free surface and/or velocity are present at time $0$. We will study the evolution of this ``jet'' until its eventual breakup at time $t_\text{b}$.
+
+For simplicity, we will consider only an inviscid and irrotational flow, i.e., a potential flow. In potential flow the velocities $u$ and $v$ in the $x$ and $r$ directions respectively are related to the velocity potential $\phi$ as follows~\citep[p.~283]{panton_incompressible_2013}:
+\begin{equation}
+   u = \dpd{\phi}{x}, \qquad \text{and} \qquad v = \dpd{\phi}{r}.
+\end{equation}
+
+The velocity potential itself satisfies~\citep[p.~284]{panton_incompressible_2013}
+\begin{equation}
+   \nabla^2 \phi = 0. \label{eqn:Laplace equation}
+\end{equation}
+
+The pressure can be obtained through the unsteady Bernoulli equation for irrotational flow~\citep[p.~284]{panton_incompressible_2013}:
+\begin{equation}
+   \dpd{\phi}{t} + \frac{1}{2} (u^2 + v^2) + \frac{p}{\rhol} = C(t), \label{eqn:unsteady Bernoulli}
+\end{equation}
+where $C(t)$ is an unknown function of time. One can practically set $C(t) = 0$ without changing the results~\citep[p.~503]{panton_incompressible_2013}.
+
+\Eqref{unsteady Bernoulli} can be linearized by setting the quadratic velocity terms to zero, returning for the pressure
+\begin{equation}
+   p = -\rhol \dpd{\phi}{t}. \label{eqn:unsteady Bernoulli linearized}
+\end{equation}
+
+% TODO: Add derivation of linearized boundary condition.
+The free surface is parameterized by surface displacement, $\eta(x, t)$, where the actual free surface location is $r_0 + \eta$. At the free surface, the pressure satisfies the Young-Laplace equation:
+\begin{equation}
+   \Delta p = -\sigma \nabla \cdot \hat{n}, \label{eqn:exact BC}
+\end{equation}
+where $\hat{n}$ is a surface normal vector at the free surface.
+
+It can be shown that in terms of $\eta$, this boundary condition can be linearized to~\citep[p.~975]{berger_initial-value_1988}
+\begin{equation}
+   \Delta p = -\sigma \left(\frac{1}{r_0} - \frac{\eta}{r_0^2} - \dpd[2]{\eta}{x}\right). \label{eqn:linearized BC}
+\end{equation}
+
+% TODO: Get a better justification of the approximation of the free surface as at $r = r_0$ from a non-linear stability paper.
+% TODO: Double check the meaning of $\Delta p$ as I'm not sure that I understand it right below.
+For simplicity, the free surface is treated as located at $r = r_0$ for the purpose of \eqref{linearized BC}. So that the linearized pressure difference is zero for a flat surface, the ambient pressure is set to $-\sigma/r_0$, so $\Delta p = p(x, r_0, t) - \sigma/r_0$. Then
+\begin{equation}
+   p(x, r_0, t) = \sigma \left(\frac{\eta}{r_0^2} + \dpd[2]{\eta}{x}\right). \label{eqn:linearized BC simplified}
+\end{equation}
+
+The motion of the free surface is modeled simply by setting the velocity of the free surface equal to the radial velocity at $r = r_0$:
+\begin{equation}
+   \dpd{\eta}{t} = v(x, r_0, t). \label{eqn:surface displacement evolution}
+\end{equation}
+
+Now, all of the components necessary to solve the problem have been assembled.
+
+\section{Solution of linearized governing equations}
+
+% TODO: Prove this and prove the time dependency.
+In a cylindrical geometry, one particular solution of \eqref{Laplace equation} is
+\begin{equation}
+   \phi(x, r, t) = C_1 \cos(\kappa x) I_0(\kappa r) \exp(\omega t)
+\end{equation}
+including an assumed time dependency. Above, $I_0$ is the $0$th-order modified Bessel function of the first kind. Rayleigh theory is based on the idea that a single mode is dominant; this idea must be experimentally validated.
+
+The radial velocity $v$ can be found as
+\begin{equation}
+   v = \dpd{\phi}{r} = C_1 \kappa \cos(\kappa x) I_1(\kappa r) \exp(\omega t),
+\end{equation}
+where the fact that $I_0^\prime(z) = I_1(z)$ was used.
+
+The pressure $p$ can be found from \eqref{unsteady Bernoulli linearized}
+\begin{equation}
+   p = -\rhol \dpd{\phi}{t} = -C_1 \rhol \omega \cos(\kappa x) I_0(\kappa r) \exp(\omega t). \label{eqn:p solution}
+\end{equation}
+
+The surface displacement can be found by integrating \eqref{surface displacement evolution}:
+\begin{equation}
+   \eta = \int_0^t v(x, r_0, t) \dif t = -\frac{C_1 \kappa}{\omega} I_1(\kappa r_0) \cos(\kappa x) \exp(\omega t). \label{eqn:delta solution}
+\end{equation}
+Now, substitute \eqref{delta solution} into \eqref{linearized BC simplified} to obtain
+\begin{equation}
+   p(x, r_0, t) = \frac{-C_1 \sigma \kappa}{\omega r_0^2} \left[1 - (\kappa r_0)^2\right] I_1(\kappa r_0) \cos(\kappa x) \exp(\omega t)
+\end{equation}
+This result can be substituted in to \eqref{p solution} with $r = r_0$ and rearranged to obtain an equation for the growth rate:
+\begin{equation}
+   \omega^2 = \frac{\sigma (\kappa r_0)}{\rhol r_0^3} \left[1 - (\kappa r_0)^2\right] \frac{I_1(\kappa r_0)}{I_0(\kappa r_0)}. \label{eqn:Rayleigh growth rate exact}
+\end{equation}
+
+It can be shown that for small $z$,
+\begin{equation}
+   \frac{I_1(\kappa r_0)}{I_0(\kappa r_0)} \approx \frac{\kappa r_0}{2}.
+\end{equation}
+So, \eqref{Rayleigh growth rate exact} can be approximated as
+\begin{equation}
+   \omega^2 = \frac{\sigma}{2 \rhol r_0^3} (\kappa r_0)^2 \left[1 - (\kappa r_0)^2\right]. \label{eqn:Rayleigh growth rate approx}
+\end{equation}
+
+\section{Most unstable growth rate and associated wavelength}
+% TODO: Plot comparing exact and approximate growth rates with experimental data.
+% TODO: Numerically determine the exact most unstable growth rate and associated wavenumber.
+
+To find the ``most unstable'' wavenumber, locate the maximum in the growth rate equation, \eqref{Rayleigh growth rate approx}. First, rearrange \eqref{Rayleigh growth rate approx} so that the right hand side is only a function of $(\kappa r_0)^2$:
+\begin{equation}
+   \frac{2 \rhol r_0^3 \omega^2}{\sigma} = (\kappa r_0)^2 \left[1 - (\kappa r_0)^2\right]
+\end{equation}
+Now, take the derivative of $2 \rhol r_0^3 \omega^2 / \sigma$ with respect to $(k r_0)^2$:
+\begin{equation}
+   \dod{}{{(\kappa r_0)^2}} \frac{2 \rhol r_0^3 \omega^2}{\sigma} = 1 - 2 (\kappa r_0)^2.
+\end{equation}
+Now, find the maximum by setting the derivative to zero, changing the notation for $\kappa$ to $\kappa_\text{m}$, where m stands for maximum, and solving for $\kappa_\text{m} r_0$:
+\begin{equation}
+   \kappa_\text{m} r_0 = \sqrt{\frac{1}{2}}. \label{eqn:most unstable wavenumber}
+\end{equation}
+Now the most unstable growth rate can be found by substituting the most unstable wavenumber (\eqref{most unstable wavenumber}) into \eqref{Rayleigh growth rate approx}:
+\begin{equation}
+   \omega_\text{m} = \pm \sqrt{\frac{\sigma}{\rhol d_0^3}}, \label{eqn:most unstable growth rate}
+\end{equation}
+where $r_0$ has been converted to $d_0$ for convenience. Note that as $\omega^2$ has been maximized, both the positive and negative values satisfy the maximization. Indeed, in contrast to typical theoretical treatments of the Rayleigh regime breakup problem, both values are needed to properly satisfy the initial conditions.
+
+The most unstable wavenumber can be converted into a most unstable wavelength through the definition of the wavelength ($\lambda_\text{m} \equiv 2 \pi / \kappa_\text{m}$):
+\begin{equation}
+   \lambda_\text{m} = \sqrt{2} \pi d_0. \label{eqn:most unstable wavelength}
+\end{equation}
+
+\section{Droplet diameter}
+
+\subsection{Cylindrical case}
+
+Consider a cylinder of length $\lambda_\text{m}$ and diameter $d_0$. What droplet diameter has the same volume, that is, what is the volume-equivalent droplet diameter? To find the droplet diameter, equate the volume of the cylinder and the volume of a spherical droplet of diameter $D$:
+\begin{equation}
+   \Vol_\text{d} = \lambda_\text{m} \cdot \frac{\pi}{4} d_0^2 = \frac{\sqrt{2} \pi^2}{4} d_0^3 = \frac{\pi}{6} D^3
+\end{equation}
+or after rearranging,
+\begin{equation}
+   D = \left(\frac{3 \sqrt{2}}{2} \pi\right)^{1/3} d_0 \approx 1.88 d_0.
+\end{equation}
+While this value is frequently used in the literature, it's actually inconsistent with the theory as the free surface is described by a cosine function, not a cylinder.
+
+\subsection{Cosine case}
+
+% TODO: Add illustration like Chen's.
+The cosine case was first described by \citet[pp.~202--203]{chen_disintegration_1964}, albeit incorrectly. When breakup occurs, the amplitude of the initial disturbance is $\delta = r_0$, which implies that the wave troughs meet, leading to breakup. Consequently, the surface displacement is
+\begin{equation}
+   \eta(x) = r_0 \cos(\kappa_\text{m} x),
+\end{equation}
+and the location of the free surface is $r_0 + \eta(x)$. A volume integral can be used to compute the volume enclosed by this surface:
+\begin{equation}
+   \Vol_\text{d} = \int_{-\lambda_\text{m}/2}^{\lambda_\text{m}/2} \int_0^{2 \pi} \int_0^{r_0 + \eta(x)} \dif A,
+\end{equation}
+where $x = -\lambda_\text{m}/2$ and $x = \lambda_\text{m}/2$ are where the wave troughs meet, and $\dif A$ is a differential area element. It is simpler to use $\kappa_\text{m}$ here instead of $\lambda_\text{m}$, so note that $\lambda_\text{m}/2 = \pi/\kappa_\text{m}$. Using that change of variables, expanding $\dif A$, and applying the first two integrals returns
+\begin{align}
+   \Vol_\text{d} &= \int_{-\pi/\kappa_\text{m}}^{\pi/\kappa_\text{m}} \int_0^{2 \pi} \int_0^{r_0 + \eta(x)} r \dif r \dif \theta \dif x, \\
+                 &= 2 \pi \int_{-\pi/\kappa_\text{m}}^{\pi/\kappa_\text{m}} \frac{1}{2} r^2 \Big|_0^{r_0 + r_0 \cos(\kappa_\text{m} x)} \dif x, \\
+                 &= \pi r_0^2 \int_{-\pi/\kappa_\text{m}}^{\pi/\kappa_\text{m}} \left(1 + \cos(\kappa_\text{m} x)\right)^2 \dif x.
+\end{align}
+Now, apply the change of variables $z \equiv \kappa_\text{m} x$, integrate, and substitute in the value of $\kappa_\text{m}$ (\eqref{most unstable wavenumber}):
+\begin{align}
+   \Vol_\text{d} &= \frac{\pi r_0^2}{\kappa_\text{m}} \int_{-\pi}^{\pi} (1 + \cos z)^2 \dif z, \\
+                 &= \frac{\pi r_0^2}{\kappa_\text{m}} \int_{-\pi}^{\pi} (1 + 2 \cos z + \cos^2 z) \dif z, \\
+                 &= \frac{(\pi r_0)^2}{\kappa_\text{m}}, \\
+                 &= \sqrt{2} \pi^2 r_0^3, \\
+                 &= \frac{\sqrt{2} \pi^2}{8} d_0^3,
+\end{align}
+which is half the volume of the cylindrical case. Then, equate this volume with the volume of a spherical droplet with diameter $D$ as before to obtain
+\begin{equation}
+   D = \left(\frac{3 \sqrt{2}}{4} \pi\right)^{1/3} d_0 \approx 1.49 d_0.
+\end{equation}
+
+\section{Droplet velocity}
+% TODO: krotov_universal_2006
+% TODO: krotov_four_2006
+% TODO: krotov_experimental_1999
+% TODO: krotov_capillary_2001
+
+\section{Breakup length}
+
+\subsection{Laminar case}
+
+\subsection{Turbulent case}
+
+%\section{Nomenclature}
+
+%\begin{description}
+   %\item[$d_0$] nozzle outlet diameter
+   %\item[$I_l$] modified Bessel function of the $l$-th order
+   %\item[$\hat{n}$] free surface normal unit vector
+   %\item[$p$] pressure
+   %\item[$r$] radial coordinate
+   %\item[$r_0 \equiv d_0/2$] nozzle outlet radius
+   %\item[$t$] time
+   %\item[$u$] velocity in $x$ direction
+   %\item[$v$] velocity in $r$ direction
+   %\item[$x$] streamwise coordinate
+   %\item[$\delta$] free surface perturbation amplitude (function of $t$ only)
+   %\item[$\eta$] free surface perturbation (function of $x$ and $t$)
+   %\item[$\kappa$] wavenumber
+   %\item[$\kappa_\text{m}$] most unstable wavenumber
+   %\item[$\lambda$] wavelength
+   %\item[$\lambda_\text{m}$] most unstable wavelength
+   %\item[$\rhol$] liquid mass density
+   %\item[$\sigma$] surface tension
+   %\item[$\phi$] velocity potential
+   %\item[$\omega$] growth rate
+   %\item[$\omega_\text{m}$] most unstable growth rate
+%\end{description}

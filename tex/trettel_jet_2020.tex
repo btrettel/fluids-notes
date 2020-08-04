@@ -1,0 +1,45 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[8pt, oneside]{book}
+
+% Set your name here
+\def\name{Ben Trettel}
+
+% Set the title here
+\def\doctitle{Jet breakup: theory and data}
+
+% Set the keywords here
+\def\keywords{jet breakup} % TODO
+
+\input{header.tex}
+% TODO: Set the font size to match a small book you have.
+% TODO: Set the margins to match a small book you have.
+
+\addbibresource{jet-breakup.bib}
+
+\title{\doctitle}
+\author{\name}%\affil{}
+\date{\today}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+\mainmatter
+
+\part{Jet breakup physics}
+%\input{regimes.tex}
+%\input{dripping.tex}
+\input{rayleigh.tex}
+%\input{downstream-transition.tex}
+%\input{turbulent-surface-breakup.tex}
+%\input{atomization.tex}
+
+\part{Applications}
+% Nozzle design
+% Water jet trajectories
+
+\backmatter
+\printbibliography[notcategory=ignore,heading=bibintoc,title={Bibliography}]
+
+\end{document}
