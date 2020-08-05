@@ -7,13 +7,13 @@
       xmlns:dc='http://purl.org/dc/elements/1.1/'>
       <dc:rights>
        <rdf:Alt>
-        <rdf:li xml:lang='x-default' >Copyright 2020, Ben Trettel. Licensed to the public under the Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) license. Permission is granted by the author to produce translations which leave the document otherwise unaltered, but no other derivatives without permission.</rdf:li>
+        <rdf:li xml:lang='x-default' >Copyright 2020, Ben Trettel. Licensed to the public under the Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license.</rdf:li>
        </rdf:Alt>
       </dc:rights>
      </rdf:Description>
      <rdf:Description rdf:about=''
       xmlns:cc='http://creativecommons.org/ns#'>
-      <cc:license rdf:resource='https://creativecommons.org/licenses/by-nd/4.0/'/>
+      <cc:license rdf:resource='https://creativecommons.org/licenses/by-sa/4.0/'/>
      </rdf:Description>
     </rdf:RDF>
 </x:xmpmeta><?xpacket end='r'?>
