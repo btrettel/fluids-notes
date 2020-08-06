@@ -1,0 +1,10 @@
+*.xmpi
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.out
+tex/trettel_jet_2020.pdf
+tex/trettel_jet_2020.run.xml
+*.toc
