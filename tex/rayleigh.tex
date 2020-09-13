@@ -44,9 +44,9 @@ It can be shown that in terms of $\eta$, this boundary condition can be lineariz
 
 % TODO: Get a better justification of the approximation of the free surface as at $r = r_0$ from a non-linear stability paper.
 % TODO: Double check the meaning of $\Delta p$ as I'm not sure that I understand it right below.
-For simplicity, the free surface is treated as located at $r = r_0$ for the purpose of \eqref{linearized BC}. So that the linearized pressure difference is zero for a flat surface, the ambient pressure is set to $-\sigma/r_0$, so $\Delta p = p(x, r_0, t) - \sigma/r_0$. Then
+For simplicity, the free surface is treated as located at $r = r_0$ for the purpose of \eqref{linearized BC}. So that the linearized pressure difference is zero for a flat surface, the ambient pressure is set to $-\sigma/r_0$, so $\Delta p = \sigma/r_0 - p(x, r_0, t)$. Then
 \begin{equation}
-   p(x, r_0, t) = \sigma \left(\frac{\eta}{r_0^2} + \dpd[2]{\eta}{x}\right). \label{eqn:linearized BC simplified}
+   p(x, r_0, t) = -\sigma \left(\frac{\eta}{r_0^2} + \dpd[2]{\eta}{x}\right). \label{eqn:linearized BC simplified}
 \end{equation}
 
 The motion of the free surface is modeled simply by setting the velocity of the free surface equal to the radial velocity at $r = r_0$:
@@ -78,7 +78,7 @@ The pressure $p$ can be found from \eqref{unsteady Bernoulli linearized}
 
 The surface displacement can be found by integrating \eqref{surface displacement evolution}:
 \begin{equation}
-   \eta = \int_0^t v(x, r_0, t) \dif t = -\frac{C_1 \kappa}{\omega} I_1(\kappa r_0) \cos(\kappa x) \exp(\omega t). \label{eqn:delta solution}
+   \eta = \int_0^t v(x, r_0, t) \dif t = \frac{C_1 \kappa}{\omega} I_1(\kappa r_0) \cos(\kappa x) \exp(\omega t). \label{eqn:delta solution}
 \end{equation}
 Now, substitute \eqref{delta solution} into \eqref{linearized BC simplified} to obtain
 \begin{equation}
