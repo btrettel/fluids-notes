@@ -33,18 +33,18 @@ where $C(t)$ is an unknown function of time. One can practically set $C(t) = 0$ 
 % TODO: Add derivation of linearized boundary condition.
 The free surface is parameterized by surface displacement, $\eta(x, t)$, where the actual free surface location is $r_0 + \eta$. At the free surface, the pressure satisfies the Young-Laplace equation:
 \begin{equation}
-   \Delta p = -\sigma \nabla \cdot \hat{n}, \label{eqn:exact BC}
+   \Delta p = \sigma \nabla \cdot \hat{n}, \label{eqn:exact BC}
 \end{equation}
-where $\hat{n}$ is a surface normal vector at the free surface.
+where $\Delta p = p_\text{jet} - p_\text{atm}$ at the free surface and $\hat{n}$ is a surface normal vector at the free surface.
 
 It can be shown that in terms of $\eta$, this boundary condition can be linearized to~\citep[p.~975]{berger_initial-value_1988}
 \begin{equation}
-   \Delta p = -\sigma \left(\frac{1}{r_0} - \frac{\eta}{r_0^2} - \dpd[2]{\eta}{x}\right). \label{eqn:linearized BC}
+   \Delta p = \sigma \left(\frac{1}{r_0} - \frac{\eta}{r_0^2} - \dpd[2]{\eta}{x}\right). \label{eqn:linearized BC}
 \end{equation}
 
-% TODO: Get a better justification of the approximation of the free surface as at $r = r_0$ from a non-linear stability paper.
+% TODO: Get a better justification of the approximation of the free surface as at $r = r_0$ from a nonlinear stability paper.
 % TODO: Double check the meaning of $\Delta p$ as I'm not sure that I understand it right below.
-For simplicity, the free surface is treated as located at $r = r_0$ for the purpose of \eqref{linearized BC}. So that the linearized pressure difference is zero for a flat surface, the ambient pressure is set to $-\sigma/r_0$, so $\Delta p = \sigma/r_0 - p(x, r_0, t)$. Then
+For simplicity, the free surface is treated as located at $r = r_0$ for the purpose of \eqref{linearized BC}. So we examine only pressure fluctuations from the equilibrium pressure for a cylinder, that the linearized pressure difference is zero for a flat surface, the ambient pressure $p_\text{atm}$ is set to $-\sigma/r_0$, so $\Delta p = p(x, r_0, t) + \sigma/r_0$. Then
 \begin{equation}
    p(x, r_0, t) = -\sigma \left(\frac{\eta}{r_0^2} + \dpd[2]{\eta}{x}\right). \label{eqn:linearized BC simplified}
 \end{equation}
