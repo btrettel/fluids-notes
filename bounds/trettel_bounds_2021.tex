@@ -1,0 +1,108 @@
+\documentclass[ccbysa,note]{bmtreport}
+
+%\addbibresource{}
+
+\docids{7or} % For notes: pwgen -A 3 1
+\title{Bounds on quantities in fluid dynamics}
+\author{Ben Trettel}
+\date{\today} % could also be \svnyear-\svnmonth-\svnday
+%\setdoi{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+The Navier-Stokes equations are typically either difficult or impossible to solve analytically. Consequently, fluid dynamics problems often can not be analyzed exactly. However, in many instances it is possible to derive bounds on quantities in fluid dynamics problems. These bounds can be used as-is for rough estimates or for best- or worst- case predictions. These bounds also can be used as ``realizability'' tests for models, ensuring that the model produces physically possible predictions.
+\end{abstract}
+\subjclass{532.517.4+517.518.28}
+%\extrasubjclass{}{}
+\keywords{inequalities, turbulence, stability theory}
+
+\section{Turbulence quantities}
+
+\subsection{Lower bounds on the turbulence kinetic energy dissipation rate as a function of the diagonal terms of the Reynolds stress tensor or the turbulence kinetic energy}
+% TODO: Change overbar to \avg
+
+The definition of the (pseudo-)dissipation of turbulence kinetic energy is
+\begin{equation}
+   \varepsilon \equiv \nu \avg{\dpd{u_i}{x_j} \dpd{u_i}{x_j}} \,,
+\end{equation}
+using the convention where $U_i$ is the mean velocity vector and $u_i$ is the fluctuating velocity vector. Often it's noted that $\varepsilon$ has a lower bound of zero, as can be demonstrated in various ways (e.g., Jensen's inequality). The goal of this note is to find a tighter rigorous lower bound that is only a function of $k$, but along the way an inequality was found which included on the diagonal components of the Reynolds stress tensor.
+
+Note that by the product rule, for $\alpha$ and $\beta$ not following the summation convention, the following is true:
+\begin{equation}
+   \dpd{u_\alpha u_\alpha}{x_\beta} = 2 u_\alpha \dpd{u_\alpha}{x_\beta} \,, %\longrightarrow \frac{1}{2} \dpd{u_\alpha u_\alpha}{x_\beta} = u_\alpha \dpd{u_\alpha}{x_\beta} \,,
+\end{equation}
+which implies after averaging
+\begin{equation}
+   \frac{1}{2} \dpd{\avg{u_\alpha u_\alpha}}{x_\beta} = \avg{u_\alpha \dpd{u_\alpha}{x_\beta}} \,, \label{eq:diag to individual}
+\end{equation}
+
+The Cauchy-Schwarz inequality for two random variables $X$ and $Y$ is
+\begin{equation}
+   \left(\avg{X Y}\right)^2 \leq \avg{X^2} \, \avg{Y^2} \,,
+\end{equation}
+which suggests
+\begin{equation}
+   \left(\avg{u_\alpha \dpd{u_\alpha}{x_\beta}}\right)^2 \leq \avg{u_\alpha^2} \avg{\left(\dpd{u_\alpha}{x_\beta}\right)^2} \,.
+\end{equation}
+
+Note that left side of the previous expression is the same as the right side of \eqref{diag to individual} squared. Consequently,
+\begin{equation}
+   \left(\frac{1}{2} \dpd{\avg{u_\alpha u_\alpha}}{x_\beta}\right)^2 \leq \avg{u_\alpha^2} \avg{\left(\dpd{u_\alpha}{x_\beta}\right)^2} \,.
+\end{equation}
+
+Rewritten, this suggests
+\begin{equation}
+   \avg{\dpd{u_\alpha}{x_\beta} \dpd{u_\alpha}{x_\beta}} \geq \frac{1}{\avg{u_\alpha u_\alpha}} \left(\frac{1}{2} \dpd{\avg{u_\alpha u_\alpha}}{x_\beta}\right)^2 \,. \label{eq:individual term inequality}
+\end{equation}
+
+The term on the right looks like individual terms of the dissipation of turbulence kinetic energy when written out:
+\begin{align}
+   \frac{\varepsilon}{\nu} &= \avg{\dpd{u_1}{x_1} \dpd{u_1}{x_1}} + \avg{\dpd{u_1}{x_2} \dpd{u_1}{x_2}} + \avg{\dpd{u_1}{x_3} \dpd{u_1}{x_3}} \notag \\
+                           &\quad + \avg{\dpd{u_2}{x_1} \dpd{u_2}{x_1}} + \avg{\dpd{u_2}{x_2} \dpd{u_2}{x_2}} + \avg{\dpd{u_2}{x_3} \dpd{u_2}{x_3}} \notag \\
+                           &\quad + \avg{\dpd{u_3}{x_1} \dpd{u_3}{x_1}} + \avg{\dpd{u_3}{x_2} \dpd{u_3}{x_2}} + \avg{\dpd{u_3}{x_3} \dpd{u_3}{x_3}} \,.
+\end{align}
+
+After applying \eqref{individual term inequality} and simplifying a bit, I find
+\begin{align}
+   \frac{4 \varepsilon}{\nu} &\geq \frac{1}{\avg{u_1 u_1}} \left[\left(\dpd{\avg{u_1 u_1}}{x_1}\right)^2 + \left(\dpd{\avg{u_1 u_1}}{x_2}\right)^2 + \left(\dpd{\avg{u_1 u_1}}{x_3}\right)^2\right] \notag \\
+                             &\quad + \frac{1}{\avg{u_2 u_2}} \left[\left(\dpd{\avg{u_2 u_2}}{x_1}\right)^2 + \left(\dpd{\avg{u_2 u_2}}{x_2}\right)^2 + \left(\dpd{\avg{u_2 u_2}}{x_3}\right)^2\right] \notag \\
+                             &\quad + \frac{1}{\avg{u_3 u_3}} \left[\left(\dpd{\avg{u_3 u_3}}{x_1}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_2}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_3}\right)^2\right] \,. \label{eq:diagonal reynolds stress inequality}
+\end{align}
+
+The previous result is a relatively simple lower bound for $\varepsilon$ using only the diagonal terms of the Reynolds stress tensor.
+
+A bound based solely on $k$ is desired, however. Note that because $k \equiv \tfrac{1}{2} \avg{u_i u_i}$, for any $\alpha$, $2 k \geq \avg{u_\alpha u_\alpha}$. Consequently, the $1 / \avg{u_\alpha u_\alpha}$ term above can be replaced by $1 / (2 k)$, and the result is less than the right hand side of \eqref{diagonal reynolds stress inequality}. The consequence of this is
+\begin{align}
+   \frac{8 \varepsilon k}{\nu} &\geq \left(\dpd{\avg{u_1 u_1}}{x_1}\right)^2 + \left(\dpd{\avg{u_1 u_1}}{x_2}\right)^2 + \left(\dpd{\avg{u_1 u_1}}{x_3}\right)^2 \notag \\
+                             &\quad + \left(\dpd{\avg{u_2 u_2}}{x_1}\right)^2 + \left(\dpd{\avg{u_2 u_2}}{x_2}\right)^2 + \left(\dpd{\avg{u_2 u_2}}{x_3}\right)^2 \notag \\
+                             &\quad + \left(\dpd{\avg{u_3 u_3}}{x_1}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_2}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_3}\right)^2 \,.
+\end{align}
+
+An inequality relating the sum of squares to the square of a sum is now necessary to construct $k$. One such inequality is $\tfrac{1}{n} \sum_{i = 1}^n a_i \leq \left(\tfrac{1}{n} \sum_{i = 1}^n a_i^2\right)^{1/2}$, which can be rearranged to $\tfrac{1}{n} \left(\sum_{i = 1}^n a_i\right)^2 \leq \sum_{i = 1}^n a_i^2$. Applying this inequality suggests that
+\begin{align}
+   \frac{8 \varepsilon k}{\nu} &\geq \frac{1}{9} \bigg(\dpd{\avg{u_1 u_1}}{x_1} + \dpd{\avg{u_1 u_1}}{x_2} + \dpd{\avg{u_1 u_1}}{x_3} \notag \\
+                             &\quad + \dpd{\avg{u_2 u_2}}{x_1} + \dpd{\avg{u_2 u_2}}{x_2} + \dpd{\avg{u_2 u_2}}{x_3} \notag \\
+                             &\quad + \dpd{\avg{u_3 u_3}}{x_1} + \dpd{\avg{u_3 u_3}}{x_2} + \dpd{\avg{u_3 u_3}}{x_3}\bigg)^2 \,.
+\end{align}
+which can be rewritten
+\begin{equation}
+   \frac{18 \varepsilon k}{\nu} \geq \left(\dpd{k}{x_1} + \dpd{k}{x_2} + \dpd{k}{x_3}\right)^2 \,.
+\end{equation}
+
+If the spatial derivative of $k$ is only known in one or two directions, because the right hand side is squared, a partial sum also satisfies the same inequality:
+\begin{equation}
+   \frac{18 \varepsilon k}{\nu} \geq \left(\dpd{k}{x_\alpha}\right)^2 \,.
+\end{equation}
+
+It may be possible to construct models for terms for turbulence models using similar methods. For example, if one could find an upper bound on $\varepsilon$, and the form was similar to that of the lower bound, then a reasonable model could add a coefficient in the front with a value between that of the upper and lower bounds.
+
+Note that the Navier-Stokes equations or results from them were never used in the derivations above aside from the definition of $\varepsilon$. The inequalities were determined using only algebraic manipulations from the definition of $\varepsilon$. It is possible that by using the governing equations, tighter bounds could be developed.
+
+Additionally, it is interesting to note that the $k$ bound is in no way similar to the common scaling $\varepsilon \varpropto k^{3/2} / L$ where $L$ is the integral length scale. This may be due to the fact that no length scales were includes in the derivation, only $k$.
+
+Finally, it is worth highlighting that the ``zeroth law of turbulence'' could suggest that the $\geq$ is actually a $>$. As $\nu \downarrow 0$, $\varepsilon \geq 0$, but the ``zeroth law'' would suggest that $\varepsilon \neq 0$, so perhaps $\varepsilon > 0$.
+
+%\printbibliography[notcategory=ignore]
+
+\end{document}
