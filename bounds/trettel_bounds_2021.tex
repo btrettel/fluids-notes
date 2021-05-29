@@ -24,50 +24,50 @@ The Navier-Stokes equations are typically either difficult or impossible to solv
 
 The definition of the (pseudo-)dissipation of turbulence kinetic energy is
 \begin{equation}
-   \varepsilon \equiv \nu \avg{\dpd{u_i}{x_j} \dpd{u_i}{x_j}} \,,
+   \varepsilon \equiv \nu \avg{\dpd{u_i}{x_j} \dpd{u_i}{x_j}},
 \end{equation}
 using the convention where $U_i$ is the mean velocity vector and $u_i$ is the fluctuating velocity vector. Often it's noted that $\varepsilon$ has a lower bound of zero, as can be demonstrated in various ways (e.g., Jensen's inequality). The goal of this note is to find a tighter rigorous lower bound that is only a function of $k$, but along the way an inequality was found which included on the diagonal components of the Reynolds stress tensor.
 
 Note that by the product rule, for $\alpha$ and $\beta$ not following the summation convention, the following is true:
 \begin{equation}
-   \dpd{u_\alpha u_\alpha}{x_\beta} = 2 u_\alpha \dpd{u_\alpha}{x_\beta} \,, %\longrightarrow \frac{1}{2} \dpd{u_\alpha u_\alpha}{x_\beta} = u_\alpha \dpd{u_\alpha}{x_\beta} \,,
+   \dpd{u_\alpha u_\alpha}{x_\beta} = 2 u_\alpha \dpd{u_\alpha}{x_\beta}, %\longrightarrow \frac{1}{2} \dpd{u_\alpha u_\alpha}{x_\beta} = u_\alpha \dpd{u_\alpha}{x_\beta},
 \end{equation}
 which implies after averaging
 \begin{equation}
-   \frac{1}{2} \dpd{\avg{u_\alpha u_\alpha}}{x_\beta} = \avg{u_\alpha \dpd{u_\alpha}{x_\beta}} \,, \label{eq:diag to individual}
+   \frac{1}{2} \dpd{\avg{u_\alpha u_\alpha}}{x_\beta} = \avg{u_\alpha \dpd{u_\alpha}{x_\beta}}, \label{eq:diag to individual}
 \end{equation}
 
 The Cauchy-Schwarz inequality for two random variables $X$ and $Y$ is
 \begin{equation}
-   \left(\avg{X Y}\right)^2 \leq \avg{X^2} \, \avg{Y^2} \,,
+   \left(\avg{X Y}\right)^2 \leq \avg{X^2} \avg{Y^2},
 \end{equation}
 which suggests
 \begin{equation}
-   \left(\avg{u_\alpha \dpd{u_\alpha}{x_\beta}}\right)^2 \leq \avg{u_\alpha^2} \avg{\left(\dpd{u_\alpha}{x_\beta}\right)^2} \,.
+   \left(\avg{u_\alpha \dpd{u_\alpha}{x_\beta}}\right)^2 \leq \avg{u_\alpha^2} \avg{\left(\dpd{u_\alpha}{x_\beta}\right)^2}.
 \end{equation}
 
 Note that left side of the previous expression is the same as the right side of \eqref{diag to individual} squared. Consequently,
 \begin{equation}
-   \left(\frac{1}{2} \dpd{\avg{u_\alpha u_\alpha}}{x_\beta}\right)^2 \leq \avg{u_\alpha^2} \avg{\left(\dpd{u_\alpha}{x_\beta}\right)^2} \,.
+   \left(\frac{1}{2} \dpd{\avg{u_\alpha u_\alpha}}{x_\beta}\right)^2 \leq \avg{u_\alpha^2} \avg{\left(\dpd{u_\alpha}{x_\beta}\right)^2}.
 \end{equation}
 
 Rewritten, this suggests
 \begin{equation}
-   \avg{\dpd{u_\alpha}{x_\beta} \dpd{u_\alpha}{x_\beta}} \geq \frac{1}{\avg{u_\alpha u_\alpha}} \left(\frac{1}{2} \dpd{\avg{u_\alpha u_\alpha}}{x_\beta}\right)^2 \,. \label{eq:individual term inequality}
+   \avg{\dpd{u_\alpha}{x_\beta} \dpd{u_\alpha}{x_\beta}} \geq \frac{1}{\avg{u_\alpha u_\alpha}} \left(\frac{1}{2} \dpd{\avg{u_\alpha u_\alpha}}{x_\beta}\right)^2. \label{eq:individual term inequality}
 \end{equation}
 
 The term on the right looks like individual terms of the dissipation of turbulence kinetic energy when written out:
 \begin{align}
    \frac{\varepsilon}{\nu} &= \avg{\dpd{u_1}{x_1} \dpd{u_1}{x_1}} + \avg{\dpd{u_1}{x_2} \dpd{u_1}{x_2}} + \avg{\dpd{u_1}{x_3} \dpd{u_1}{x_3}} \notag \\
                            &\quad + \avg{\dpd{u_2}{x_1} \dpd{u_2}{x_1}} + \avg{\dpd{u_2}{x_2} \dpd{u_2}{x_2}} + \avg{\dpd{u_2}{x_3} \dpd{u_2}{x_3}} \notag \\
-                           &\quad + \avg{\dpd{u_3}{x_1} \dpd{u_3}{x_1}} + \avg{\dpd{u_3}{x_2} \dpd{u_3}{x_2}} + \avg{\dpd{u_3}{x_3} \dpd{u_3}{x_3}} \,.
+                           &\quad + \avg{\dpd{u_3}{x_1} \dpd{u_3}{x_1}} + \avg{\dpd{u_3}{x_2} \dpd{u_3}{x_2}} + \avg{\dpd{u_3}{x_3} \dpd{u_3}{x_3}}.
 \end{align}
 
 After applying \eqref{individual term inequality} and simplifying a bit, I find
 \begin{align}
    \frac{4 \varepsilon}{\nu} &\geq \frac{1}{\avg{u_1 u_1}} \left[\left(\dpd{\avg{u_1 u_1}}{x_1}\right)^2 + \left(\dpd{\avg{u_1 u_1}}{x_2}\right)^2 + \left(\dpd{\avg{u_1 u_1}}{x_3}\right)^2\right] \notag \\
                              &\quad + \frac{1}{\avg{u_2 u_2}} \left[\left(\dpd{\avg{u_2 u_2}}{x_1}\right)^2 + \left(\dpd{\avg{u_2 u_2}}{x_2}\right)^2 + \left(\dpd{\avg{u_2 u_2}}{x_3}\right)^2\right] \notag \\
-                             &\quad + \frac{1}{\avg{u_3 u_3}} \left[\left(\dpd{\avg{u_3 u_3}}{x_1}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_2}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_3}\right)^2\right] \,. \label{eq:diagonal reynolds stress inequality}
+                             &\quad + \frac{1}{\avg{u_3 u_3}} \left[\left(\dpd{\avg{u_3 u_3}}{x_1}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_2}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_3}\right)^2\right]. \label{eq:diagonal reynolds stress inequality}
 \end{align}
 
 The previous result is a relatively simple lower bound for $\varepsilon$ using only the diagonal terms of the Reynolds stress tensor.
@@ -76,23 +76,23 @@ A bound based solely on $k$ is desired, however. Note that because $k \equiv \tf
 \begin{align}
    \frac{8 \varepsilon k}{\nu} &\geq \left(\dpd{\avg{u_1 u_1}}{x_1}\right)^2 + \left(\dpd{\avg{u_1 u_1}}{x_2}\right)^2 + \left(\dpd{\avg{u_1 u_1}}{x_3}\right)^2 \notag \\
                              &\quad + \left(\dpd{\avg{u_2 u_2}}{x_1}\right)^2 + \left(\dpd{\avg{u_2 u_2}}{x_2}\right)^2 + \left(\dpd{\avg{u_2 u_2}}{x_3}\right)^2 \notag \\
-                             &\quad + \left(\dpd{\avg{u_3 u_3}}{x_1}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_2}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_3}\right)^2 \,.
+                             &\quad + \left(\dpd{\avg{u_3 u_3}}{x_1}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_2}\right)^2 + \left(\dpd{\avg{u_3 u_3}}{x_3}\right)^2.
 \end{align}
 
 An inequality relating the sum of squares to the square of a sum is now necessary to construct $k$. One such inequality is $\tfrac{1}{n} \sum_{i = 1}^n a_i \leq \left(\tfrac{1}{n} \sum_{i = 1}^n a_i^2\right)^{1/2}$, which can be rearranged to $\tfrac{1}{n} \left(\sum_{i = 1}^n a_i\right)^2 \leq \sum_{i = 1}^n a_i^2$. Applying this inequality suggests that
 \begin{align}
    \frac{8 \varepsilon k}{\nu} &\geq \frac{1}{9} \bigg(\dpd{\avg{u_1 u_1}}{x_1} + \dpd{\avg{u_1 u_1}}{x_2} + \dpd{\avg{u_1 u_1}}{x_3} \notag \\
                              &\quad + \dpd{\avg{u_2 u_2}}{x_1} + \dpd{\avg{u_2 u_2}}{x_2} + \dpd{\avg{u_2 u_2}}{x_3} \notag \\
-                             &\quad + \dpd{\avg{u_3 u_3}}{x_1} + \dpd{\avg{u_3 u_3}}{x_2} + \dpd{\avg{u_3 u_3}}{x_3}\bigg)^2 \,.
+                             &\quad + \dpd{\avg{u_3 u_3}}{x_1} + \dpd{\avg{u_3 u_3}}{x_2} + \dpd{\avg{u_3 u_3}}{x_3}\bigg)^2.
 \end{align}
 which can be rewritten
 \begin{equation}
-   \frac{18 \varepsilon k}{\nu} \geq \left(\dpd{k}{x_1} + \dpd{k}{x_2} + \dpd{k}{x_3}\right)^2 \,.
+   \frac{18 \varepsilon k}{\nu} \geq \left(\dpd{k}{x_1} + \dpd{k}{x_2} + \dpd{k}{x_3}\right)^2.
 \end{equation}
 
 If the spatial derivative of $k$ is only known in one or two directions, because the right hand side is squared, a partial sum also satisfies the same inequality:
 \begin{equation}
-   \frac{18 \varepsilon k}{\nu} \geq \left(\dpd{k}{x_\alpha}\right)^2 \,.
+   \frac{18 \varepsilon k}{\nu} \geq \left(\dpd{k}{x_\alpha}\right)^2.
 \end{equation}
 
 It may be possible to construct models for terms for turbulence models using similar methods. For example, if one could find an upper bound on $\varepsilon$, and the form was similar to that of the lower bound, then a reasonable model could add a coefficient in the front with a value between that of the upper and lower bounds.

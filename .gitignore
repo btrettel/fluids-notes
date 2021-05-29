@@ -5,6 +5,8 @@
 *.blg
 *.log
 *.out
-tex/trettel_jet_2020.pdf
-tex/trettel_jet_2020.run.xml
+*.pdf
+*.run.xml
 *.toc
+abstract.tex
+title.tex
