@@ -1,11 +1,11 @@
-\documentclass[ccbysa,note]{bmtreport}
+\documentclass[ccbysa,note,git]{bmtreport}
 
 %\addbibresource{}
 
-\docids{7or} % For notes: pwgen -A 3 1
+\docids[\GitHash]{7or}
 \title{Bounds on quantities in fluid dynamics}
 \author{Ben Trettel}
-\date{\today} % could also be \svnyear-\svnmonth-\svnday
+\date{\today}
 %\setdoi{}
 
 \begin{document}
@@ -39,11 +39,11 @@ which implies after averaging
 
 The Cauchy-Schwarz inequality for two random variables $X$ and $Y$ is
 \begin{equation}
-   \left(\avg{X Y}\right)^2 \leq \avg{X^2} \avg{Y^2},
+   \avg{X Y\kern2pt}^2 \leq \avg{X^2} \avg{Y^2},
 \end{equation}
 which suggests
 \begin{equation}
-   \left(\avg{u_\alpha \dpd{u_\alpha}{x_\beta}}\right)^2 \leq \avg{u_\alpha^2} \avg{\left(\dpd{u_\alpha}{x_\beta}\right)^2}.
+   \avg{u_\alpha \dpd{u_\alpha}{x_\beta}}^2 \leq \avg{u_\alpha^2} \avg{\left(\dpd{u_\alpha}{x_\beta}\right)^2}.
 \end{equation}
 
 Note that left side of the previous expression is the same as the right side of \eqref{diag to individual} squared. Consequently,
