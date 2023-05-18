@@ -17,10 +17,44 @@ The Navier-Stokes equations are typically either difficult or impossible to solv
 %\extrasubjclass{}{}
 \keywords{inequalities, turbulence, stability theory}
 
+%Possible title: General non-zero lower bound on dissipation in inhomogeneous turbulence
+
+%First, check all the papers you saved to see whether this is likely novel
+
+%Note that this is an elementary proof, not using any fancy techniques like variational techniques.
+    %https://en.wikipedia.org/wiki/Gaussian_correlation_inequality#History
+        %> The general case of the inequality remained open until 2014, when Thomas Royen, a retired German statistician, proved it using relatively elementary tools.
+        
+        %> "A simple proof of the Gaussian correlation conjecture extended to multivariate gamma distributions"
+
+%Say this is more general than the variational inequalities as it does not depend on a particular flow.
+
+%Show that many models violate this lower bound
+
+%Find data to validate the lower bound
+
+%Look at magnitude of lower bound as it's probably small due to the viscosity term
+
+%See if you can make tighter bounds
+% https://math.stackexchange.com/questions/2458850/tighter-inequality-than-cauchy-schwarz-inequality
+% https://math.stackexchange.com/questions/4599738/proof-of-a-tighter-inequality-than-cauchy-schwarz-inequality
+% https://mathoverflow.net/questions/301844/a-strengthening-of-the-cauchy-schwarz-inequality
+% https://www.google.com/search?q=tigher+than+cauchy+schwarz
+
+%See if you can make an upper bound
+
+%See if you can make similar bounds for other quadratic quantities like each Reynolds stress (including Reynolds shear stresses and RMS velocities), turbulent kinetic energy
+
+%At equilibrium, production = dissipation. Combine Durbing exercise 6.8 with my bound? p. 153
+
+% Prior art:
+% /home/ben/reference/Physics [53]/Fluid mechanics [532]/Bounds [532+517.518.28]/Turbulence/Dissipation/
+% rozema_minimum-dissipation_2015
+
 \section{Turbulence quantities}
 
-\subsection{Lower bounds on the turbulence kinetic energy dissipation rate as a function of the diagonal terms of the Reynolds stress tensor or the turbulence kinetic energy}
-% TODO: Change overbar to \avg
+\subsection{Lower bounds on the turbulence dissipation rate as a function of the diagonal terms of the Reynolds stress tensor or the turbulence kinetic energy}
+% TODO: Discuss relationship between dissipation and pseudo-dissipation
 
 The definition of the (pseudo-)dissipation of turbulence kinetic energy is
 \begin{equation}
@@ -56,7 +90,7 @@ Rewritten, this suggests
    \avg{\dpd{u_\alpha}{x_\beta} \dpd{u_\alpha}{x_\beta}} \geq \frac{1}{\avg{u_\alpha u_\alpha}} \left(\frac{1}{2} \dpd{\avg{u_\alpha u_\alpha}}{x_\beta}\right)^2. \label{eq:individual term inequality}
 \end{equation}
 
-The term on the right looks like individual terms of the dissipation of turbulence kinetic energy when written out:
+The term on the left looks like individual terms of the dissipation of turbulence kinetic energy when written out:
 \begin{align}
    \frac{\varepsilon}{\nu} &= \avg{\dpd{u_1}{x_1} \dpd{u_1}{x_1}} + \avg{\dpd{u_1}{x_2} \dpd{u_1}{x_2}} + \avg{\dpd{u_1}{x_3} \dpd{u_1}{x_3}} \notag \\
                            &\quad + \avg{\dpd{u_2}{x_1} \dpd{u_2}{x_1}} + \avg{\dpd{u_2}{x_2} \dpd{u_2}{x_2}} + \avg{\dpd{u_2}{x_3} \dpd{u_2}{x_3}} \notag \\
@@ -97,7 +131,7 @@ If the spatial derivative of $k$ is only known in one or two directions, because
 
 It may be possible to construct models for terms for turbulence models using similar methods. For example, if one could find an upper bound on $\varepsilon$, and the form was similar to that of the lower bound, then a reasonable model could add a coefficient in the front with a value between that of the upper and lower bounds.
 
-Note that the Navier-Stokes equations or results from them were never used in the derivations above aside from the definition of $\varepsilon$. The inequalities were determined using only algebraic manipulations from the definition of $\varepsilon$. It is possible that by using the governing equations, tighter bounds could be developed.
+Note that the Navier-Stokes equations or results from them were never used in the derivations above aside from the definition of $\varepsilon$. The inequalities were determined using only algebraic manipulations from the definition of $\varepsilon$. It may be possible tighter bounds could be developed using the governing equations.
 
 Additionally, it is interesting to note that the $k$ bound is in no way similar to the common scaling $\varepsilon \varpropto k^{3/2} / L$ where $L$ is the integral length scale. This may be due to the fact that no length scales were includes in the derivation, only $k$.
 
